@@ -40,17 +40,18 @@ export const refreshTokenOptions: ITokenOptions = {
 export const sendToken = (user: IUser, statusCode: number, res: Response) => {
   const accessToken = user.SignAccessToken();
   const refreshToken = user.SignRefreshToken();
-
+  console.log("user id ===> : ", user?._id)
+  const userId : any = user?._id;
   // upload session to redis
-//   redis.set(user?._id, JSON.stringify(user) as any);
+  redis.set(userId, JSON.stringify(user) as any);
 
   // only set secure to true in production
   if (process.env.NODE_ENV === "production") {
     accessTokenOptions.secure = true;
   }
 
-  // res.cookie("access_token", accessToken, accessTokenOptions);
-  // res.cookie("refresh_token", refreshToken, refreshTokenOptions);
+  res.cookie("access_token", accessToken, accessTokenOptions);
+  res.cookie("refresh_token", refreshToken, refreshTokenOptions);
 
   res.status(statusCode).json({
     success: true,

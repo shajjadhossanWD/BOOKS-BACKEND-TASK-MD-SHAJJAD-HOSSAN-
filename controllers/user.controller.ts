@@ -14,7 +14,6 @@ import { redis } from "../utils/redis";
 import { getUserById } from "../services/user.service";
 import { Types } from "mongoose";
 
-
 // register user
 interface IRegistrationBody {
   name: string;
@@ -147,7 +146,6 @@ export const activateUser = CatchAsyncError(
 );
 
 
-
 export const activateAuthorAsUser = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -176,9 +174,6 @@ export const activateAuthorAsUser = CatchAsyncError(
     }
   }
 );
-
-
-
 
 // login user
 interface ILoginRequest {
