@@ -4,6 +4,8 @@ export const app = express();
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { ErrorMiddleware } from "./middleware/error";
+import path from "path";
+import userRouter from "./routes/user.route";
 
 // body parser
 app.use(express.json({ limit: "50mb" }));
@@ -13,7 +15,11 @@ app.use(cookieParser());
 
 app.use(cors());
 
+app.use("/", express.static(path.join(__dirname, "public")));
+
 // routes
+app.use("/", require("./routes/root"));
+app.use("/api/v1", userRouter);
 
 
 // testing api
