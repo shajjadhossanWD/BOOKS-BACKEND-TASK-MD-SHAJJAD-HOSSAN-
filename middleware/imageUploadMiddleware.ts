@@ -23,7 +23,7 @@ const imageFilter : any = (
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const destinationPath = path.join(__dirname, "../public"); 
+    const destinationPath = path.join(__dirname, "../public/userImg"); 
     cb(null, destinationPath);
   },
   filename: (req, file, cb) => {

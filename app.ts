@@ -6,20 +6,24 @@ import cookieParser from "cookie-parser";
 import { ErrorMiddleware } from "./middleware/error";
 import path from "path";
 import userRouter from "./routes/user.route";
+import bookRouter from "./routes/books.route";
 
 // body parser
 app.use(express.json({ limit: "50mb" }));
 
 // cookie parser
 app.use(cookieParser());
-
 app.use(cors());
-
 app.use("/", express.static(path.join(__dirname, "public")));
+app.use(
+  "/public/userImg",
+  express.static(path.join(__dirname, "public/userImg"))
+);
 
 // routes
 app.use("/", require("./routes/root"));
 app.use("/api/v1", userRouter);
+app.use("/api/v1/book", bookRouter);
 
 
 // testing api
