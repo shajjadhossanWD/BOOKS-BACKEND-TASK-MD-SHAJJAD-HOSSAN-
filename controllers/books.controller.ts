@@ -130,6 +130,19 @@ export const getAllBooks = CatchAsyncError(
 });
 
 
+export const getAllBooksAuthor = CatchAsyncError(
+    async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const Books = await BookModel.find().select('name author');
+        res.status(200).json({ 
+            success: true, 
+            data: Books 
+        });
+    } catch (error: any) {
+        return next(new ErrorHandler(error.message, 500));
+    }
+});
+
 export const getAllBooksAdmin = CatchAsyncError(
     async (req: Request, res: Response, next: NextFunction) => {
     try {
