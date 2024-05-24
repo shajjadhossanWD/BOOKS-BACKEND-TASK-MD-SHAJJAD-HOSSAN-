@@ -112,10 +112,4 @@ src/
 └── index.ts
 ```
 
-## License
-
-This project is licensed under the MIT License. 
-
----
-
 Developed by Md Shajjad Hossan. For any queries, feel free to contact at shajjadhossan111@gmail.com.
